@@ -398,6 +398,11 @@ mod_manual_inspection_server <- function(id, state, parent) {
 
     # Update Decision color based on value
     observe({
+      # In `testServer()` runs, the UI may not be initialized, so `input$decision`
+      # can be NULL. Guard to avoid "argument is of length zero" in `if()`.
+      if (is.null(input$decision) || identical(input$decision, "")) {
+        return()
+      }
       if (input$decision == "Undecided") {
         vals$color <- "solid yellow"
       }

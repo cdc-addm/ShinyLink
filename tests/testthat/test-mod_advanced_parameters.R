@@ -1,4 +1,5 @@
-testServer(
+test_that("module server works", {
+  shiny::testServer(
   mod_advanced_parameters_server,
   # Add here your module params
   args = list()
@@ -24,6 +25,7 @@ testServer(
     # expect_true(r$x == 1)
     # - Testing output
     # expect_true(inherits(output$tbl$html, "html"))
+  })
 })
  
 test_that("module ui works", {
