@@ -17,6 +17,9 @@ app_ui <- function(request) {
   if (!requireNamespace("shinyjs", quietly = TRUE)) {
     stop("Package 'shinyjs' is required. Please install it.")
   }
+  if (!requireNamespace("waiter", quietly = TRUE)) {
+    stop("Package 'waiter' is required. Please install it.")
+  }
   tagList(
     shinybusy::add_busy_bar(color = "#00a65a", height = "8px" ),
 
@@ -24,7 +27,7 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # List the first level UI elements here
     dashboardPage(
-      preloader = list(html = tagList(spin_1(), "Loading ..."), color = "#3c8dbc"),
+      preloader = list(html = tagList(waiter::spin_1(), "Loading ..."), color = "#3c8dbc"),
       options = list(sidebarExpandOnHover = TRUE),
       # controlbar = dashboardControlbar(),
       controlbar = dashboardControlbar(collapsed = TRUE, skinSelector()),
