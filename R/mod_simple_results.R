@@ -585,7 +585,6 @@ mod_simple_results_server <- function(id, state, parent){
         n_dfA.unmatch <- nrow(matched_values()[['dfA.unmatch']])
         n_dfB.unmatch <- nrow(matched_values()[['dfB.unmatch']])
         n_match <- nrow(matched_values()[['Dat']])
-        library("ggvenn") # Has to be removed for CRAN version
         # Warning: Error in inner_join: could not find function "inner_join"
 
         x <- list(Sample = c((1:n_dfA.unmatch) + 3e9, 1:n_match),
@@ -687,5 +686,10 @@ mod_simple_results_server <- function(id, state, parent){
 # mod_simple_results_server("simple_results_1")
 
 
-utils::globalVariables(c("Match Count", "Match Type"))
+utils::globalVariables(c(
+  "Match Count", "Match Type",
+  "match_status_birthday", "match_status_lastname", "match_level",
+  "match_status_SSN", "match_status_firstname", "match_status_middlename",
+  "sum_match"
+))
 

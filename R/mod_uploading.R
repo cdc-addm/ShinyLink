@@ -237,8 +237,6 @@ mod_uploading_server <- function(id, state, parent){
       dfA <- dfA()
       dfB <- dfB()
 
-      library(ggplot2)
-
       # Create data
       data <- tibble::tibble(
         Value = c(
@@ -377,3 +375,5 @@ mod_uploading_server <- function(id, state, parent){
 
 ## To be copied in the server
 # mod_uploading_server("uploading_1")
+
+utils::globalVariables(c("name", "Value", "Group"))

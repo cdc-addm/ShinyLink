@@ -1022,3 +1022,5 @@ mod_manual_inspection_server <- function(id, state, parent) {
 
 ## To be copied in the server
 # mod_manual_inspection_server("manual_inspection_1")
+
+utils::globalVariables(c("match_level", "Decision"))

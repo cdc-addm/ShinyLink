@@ -298,8 +298,8 @@ mod_advanced_parameters_server <- function(id, state, session) {
       # Testing only
       # dfA <- readxl::read_excel('inst/app/www/lkselectedrecs_cleaned.xlsx')
       # dfB <- readxl::read_excel('inst/app/www/redcapoutput_cleaned.xlsx')
-      # dfA <- readxl::read_excel('inst/app/www/Unique in Sample Data Set.xlsx')
-      # dfB <- readxl::read_excel('inst/app/www/Unique in Matching Data Set.xlsx')
+      # dfA <- readxl::read_excel('inst/app/www/unique_in_sample_dataset.xlsx')
+      # dfB <- readxl::read_excel('inst/app/www/unique_in_matching_dataset.xlsx')
       # matches.out <- fastLink::fastLink(
       #   dfA = dfA, dfB = dfB,
       #   varnames = c("firstname", "middlename", "lastname", "race", "sex"),
@@ -501,7 +501,6 @@ mod_advanced_parameters_server <- function(id, state, session) {
         n_dfA.unmatch <- nrow(matched_values()[['dfA.unmatch']])
         n_dfB.unmatch <- nrow(matched_values()[['dfB.unmatch']])
         n_match <- nrow(matched_values()[['Dat']])
-        library("ggvenn") # Has to be removed for CRAN version
         # Warning: Error in inner_join: could not find function "inner_join"
 
         x <- list(Sample = c((1:n_dfA.unmatch) + 3e9, 1:n_match),
