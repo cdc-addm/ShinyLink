@@ -56,37 +56,37 @@ mod_uploading_ui <- function(id){
             HTML("<h5><b>Download our demo data</b></h5>"),
             HTML("<h5>Sample data</h5>"),
             HTML(
-              "<a href='https://raw.githubusercontent.com/nelson-sci-labs/ShinyLink/main/inst/app/www/lkselectedrecs.xlsx'> <i class='fa fa-download'> </i> xlsx</a>"
+              "<a href='https://raw.githubusercontent.com/cdc-addm/ShinyLink/main/inst/app/www/lkselectedrecs.xlsx'> <i class='fa fa-download'> </i> xlsx</a>"
             ),
             HTML(
-              "<a href='https://raw.githubusercontent.com/nelson-sci-labs/ShinyLink/main/inst/app/www/lkselectedrecs.sas7bdat'> <i class='fa fa-download'> </i> sas7bdat</a>"
+              "<a href='https://raw.githubusercontent.com/cdc-addm/ShinyLink/main/inst/app/www/lkselectedrecs.sas7bdat'> <i class='fa fa-download'> </i> sas7bdat</a>"
             ),
             HTML(
-              "<a href='https://raw.githubusercontent.com/nelson-sci-labs/ShinyLink/main/inst/app/www/lkselectedrecs.sav'> <i class='fa fa-download'> </i> sav</a>"
+              "<a href='https://raw.githubusercontent.com/cdc-addm/ShinyLink/main/inst/app/www/lkselectedrecs.sav'> <i class='fa fa-download'> </i> sav</a>"
             ),
             HTML(
-              "<a href='https://raw.githubusercontent.com/nelson-sci-labs/ShinyLink/main/inst/app/www/lkselectedrecs.dta'> <i class='fa fa-download'> </i> dta</a>"
+              "<a href='https://raw.githubusercontent.com/cdc-addm/ShinyLink/main/inst/app/www/lkselectedrecs.dta'> <i class='fa fa-download'> </i> dta</a>"
             ),
             # HTML(
-            #   "<a href='https://raw.githubusercontent.com/nelson-sci-labs/ShinyLink/main/inst/app/www/lkselectedrecs.csv'> <i class='fa fa-download'> </i> csv</a>"
+            #   "<a href='https://raw.githubusercontent.com/cdc-addm/ShinyLink/main/inst/app/www/lkselectedrecs.csv'> <i class='fa fa-download'> </i> csv</a>"
             # ),
             br(),
             br(),
             HTML("<h5>Matching data</h5>"),
             HTML(
-              "<a href='https://raw.githubusercontent.com/nelson-sci-labs/ShinyLink/main/inst/app/www/redcapoutput.xlsx'> <i class='fa fa-download'> </i> xlsx</a>"
+              "<a href='https://raw.githubusercontent.com/cdc-addm/ShinyLink/main/inst/app/www/redcapoutput.xlsx'> <i class='fa fa-download'> </i> xlsx</a>"
             ),
             HTML(
-              "<a href='https://raw.githubusercontent.com/nelson-sci-labs/ShinyLink/main/inst/app/www/redcapoutput.sas7bdat'> <i class='fa fa-download'> </i> sas7bdat</a>"
+              "<a href='https://raw.githubusercontent.com/cdc-addm/ShinyLink/main/inst/app/www/redcapoutput.sas7bdat'> <i class='fa fa-download'> </i> sas7bdat</a>"
             ),
             HTML(
-              "<a href='https://raw.githubusercontent.com/nelson-sci-labs/ShinyLink/main/inst/app/www/redcapoutput.sav'> <i class='fa fa-download'> </i> sav</a>"
+              "<a href='https://raw.githubusercontent.com/cdc-addm/ShinyLink/main/inst/app/www/redcapoutput.sav'> <i class='fa fa-download'> </i> sav</a>"
             ),
             HTML(
-              "<a href='https://raw.githubusercontent.com/nelson-sci-labs/ShinyLink/main/inst/app/www/redcapoutput.dta'> <i class='fa fa-download'> </i> dta</a>"
+              "<a href='https://raw.githubusercontent.com/cdc-addm/ShinyLink/main/inst/app/www/redcapoutput.dta'> <i class='fa fa-download'> </i> dta</a>"
             ),
             # HTML(
-            #   "<a href='https://raw.githubusercontent.com/nelson-sci-labs/ShinyLink/main/inst/app/www/redcapoutput.csv'> <i class='fa fa-download'> </i> csv</a>"
+            #   "<a href='https://raw.githubusercontent.com/cdc-addm/ShinyLink/main/inst/app/www/redcapoutput.csv'> <i class='fa fa-download'> </i> csv</a>"
             # ),
             br(),
             br(),

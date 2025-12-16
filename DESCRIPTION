@@ -1,6 +1,6 @@
 Package: ShinyLink
 Title: 'Shiny' Based Record Linkage Tool
-Version: 0.5.4
+Version: 0.5.5
 Authors@R: c(
     person('Yaoxiang', 'Li', role = c("aut", "cre"), email = 'liyaoxiang@outlook.com'),
     person("Shufu", "Chen", role = c("aut")),       
@@ -47,8 +47,8 @@ Suggests:
     shinyjs,
     zip
 Config/testthat/edition: 3
-URL: https://shinylink.org/, https://github.com/nelson-sci-labs/ShinyLink
-BugReports: https://github.com/nelson-sci-labs/ShinyLink/issues
+URL: https://shinylink.org/, https://github.com/cdc-addm/ShinyLink/
+BugReports: https://github.com/cdc-addm/ShinyLink/issues/
 Encoding: UTF-8
 Language: en-US
 LazyData: true
