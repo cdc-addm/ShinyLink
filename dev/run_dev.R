@@ -27,12 +27,12 @@ run_app()
 # [x] - 04. Add save and load settings for gender/race re-coding.
 # [x] - 05. Do we need finding duplicates within a data set? No
 # [x] - 06. Add functionality to download all results together.
-# [ ] - 07. Question for CDC, do they need blocking? What is the maximum size of data set that they have in their workflow.
+# [ ] - 07. Do we need blocking? What is the maximum size of data set that they have in their workflow.
 # [x] - 08. Add calculation of levels of uncertainty module.
 # [x] - 09. Add manual inspection module, allow users to decide level of uncertainty before review matches.
 # [x] - 10. Fix the issue that different data input format generates different matching results
 
 # TODO New features and bug fixes
-# [ ] - 01. Files size, numbers of entries limitation and blocking? 
-# [ ] - 02. Manual review page the order 
+# [ ] - 01. Files size, numbers of entries limitation and blocking?
+# [ ] - 02. Manual review page the order
 # [ ] - 03. New looking?
