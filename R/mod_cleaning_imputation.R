@@ -137,7 +137,6 @@ mod_cleaning_imputation_ui <- function(id){
 }
 
 #' cleaning_imputation Server Functions
-#' @import gender lubridate
 #' @noRd
 mod_cleaning_imputation_server <- function(id, state, parent){
   moduleServer( id, function(input, output, session){
@@ -153,6 +152,13 @@ mod_cleaning_imputation_server <- function(id, state, parent){
 
       req(state$dfA_cleaned_date)
 
+      if (!requireNamespace("gender", quietly = TRUE)) {
+        stop("Package 'gender' is required for gender imputation. Please install it.")
+      }
+      if (!requireNamespace("lubridate", quietly = TRUE)) {
+        stop("Package 'lubridate' is required for date manipulation. Please install it.")
+      }
+
       data <- state$dfA_cleaned_date
       # TODO Under development
       # TODO Adding imputation function here
@@ -161,7 +167,7 @@ mod_cleaning_imputation_server <- function(id, state, parent){
         for (i in 1:nrow(data)) {
           if (is.na(data$sex[i])) {
             data$sex[i] <-
-              gender(
+              gender::gender(
                 data$firstname[i],
                 method = method0,
                 years = lubridate::year(data$birthday[i])
@@ -183,6 +189,13 @@ mod_cleaning_imputation_server <- function(id, state, parent){
 
       req(state$dfB_cleaned_date)
 
+      if (!requireNamespace("gender", quietly = TRUE)) {
+        stop("Package 'gender' is required for gender imputation. Please install it.")
+      }
+      if (!requireNamespace("lubridate", quietly = TRUE)) {
+        stop("Package 'lubridate' is required for date manipulation. Please install it.")
+      }
+
       data <- state$dfB_cleaned_date
       # TODO Under development
       # TODO Adding imputation function here
@@ -193,7 +206,7 @@ mod_cleaning_imputation_server <- function(id, state, parent){
         for (i in 1:nrow(data)) {
           if (is.na(data$sex[i])) {
             data$sex[i] <-
-              gender(
+              gender::gender(
                 data$firstname[i],
                 method = method0,
                 years = lubridate::year(data$birthday[i])

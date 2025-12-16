@@ -166,7 +166,6 @@ mod_uploading_ui <- function(id){
 #' uploading Server Functions
 #'
 #' @importFrom shinydashboard updateTabItems
-#' @import ggpubr ggplot2 scales
 #'
 #' @noRd
 
@@ -180,28 +179,48 @@ mod_uploading_server <- function(id, state, parent){
     load_file <- function(name, path) {
       ext <- tools::file_ext(name)
 
-      if (ext == "xlsx") { df <- readxl::read_excel(path) }
+      if (ext == "xlsx") {
+        if (!requireNamespace("readxl", quietly = TRUE)) {
+          stop("Package 'readxl' is required to read Excel files. Please install it.")
+        }
+        df <- readxl::read_excel(path)
+      }
 
       if (ext == "sas7bdat") {
+        if (!requireNamespace("haven", quietly = TRUE)) {
+          stop("Package 'haven' is required to read SAS files. Please install it.")
+        }
         df <- haven::read_sas(path)
         df[df == ""] <- NA
       }
 
       if (ext == "sav") {
+        if (!requireNamespace("haven", quietly = TRUE)) {
+          stop("Package 'haven' is required to read SPSS files. Please install it.")
+        }
         df <- haven::read_sav(path)
         df[df == ""] <- NA
       }
 
       if (ext == "dta") {
+        if (!requireNamespace("haven", quietly = TRUE)) {
+          stop("Package 'haven' is required to read Stata files. Please install it.")
+        }
         df <- haven::read_dta(path)
         df[df == ""] <- NA
       }
 
       if (ext == "csv") {
+        if (!requireNamespace("vroom", quietly = TRUE)) {
+          stop("Package 'vroom' is required to read CSV files. Please install it.")
+        }
         df <- vroom::vroom(path, delim = ",", col_types = list())
       }
 
       if (ext == "tsv") {
+        if (!requireNamespace("vroom", quietly = TRUE)) {
+          stop("Package 'vroom' is required to read TSV files. Please install it.")
+        }
         df <- vroom::vroom(path, delim = "\t", col_types = list())
       }
 
@@ -264,53 +283,63 @@ mod_uploading_server <- function(id, state, parent){
         factor(c(rep("Sample Data", 3), rep("Matching Data", 3)),
                levels = c("Sample Data", "Matching Data"))
 
+      if (!requireNamespace("ggplot2", quietly = TRUE)) {
+        stop("Package 'ggplot2' is required for plotting. Please install it.")
+      }
+      if (!requireNamespace("scales", quietly = TRUE)) {
+        stop("Package 'scales' is required for plotting. Please install it.")
+      }
+      if (!requireNamespace("ggpubr", quietly = TRUE)) {
+        stop("Package 'ggpubr' is required for plotting. Please install it.")
+      }
+
       # Barplot
-      p <- ggplot(data, aes(x=name, y=Value, fill=Group)) +
-        geom_bar(position="dodge", stat="identity") +
-        geom_text(aes(label=Value), vjust=1.6, color="white",
-                  position = position_dodge(0.9), size=3.5)+
-        theme_classic() +
-        xlab("") + ylab("Counts") +
+      p <- ggplot2::ggplot(data, ggplot2::aes(x=name, y=Value, fill=Group)) +
+        ggplot2::geom_bar(position="dodge", stat="identity") +
+        ggplot2::geom_text(ggplot2::aes(label=Value), vjust=1.6, color="white",
+                  position = ggplot2::position_dodge(0.9), size=3.5)+
+        ggplot2::theme_classic() +
+        ggplot2::xlab("") + ggplot2::ylab("Counts") +
         ggplot2::scale_fill_manual(values = c( "#7eb7e8","#addc91"))
       p
 
       data1 <- data %>% dplyr::filter(name == "Entries")
-      p1 <- ggplot(data1, aes(x=name, y=Value, fill=Group)) +
-        geom_bar(position="dodge", stat="identity") +
-        geom_text(aes(label=Value), vjust=1.6, color="white",
-                  position = position_dodge(0.9), size=3.5)+
-        theme_classic() +
-        xlab("") + ylab("Counts") + scale_y_continuous(labels = scales::label_number(accuracy = 1)) +
+      p1 <- ggplot2::ggplot(data1, ggplot2::aes(x=name, y=Value, fill=Group)) +
+        ggplot2::geom_bar(position="dodge", stat="identity") +
+        ggplot2::geom_text(ggplot2::aes(label=Value), vjust=1.6, color="white",
+                  position = ggplot2::position_dodge(0.9), size=3.5)+
+        ggplot2::theme_classic() +
+        ggplot2::xlab("") + ggplot2::ylab("Counts") + ggplot2::scale_y_continuous(labels = scales::label_number(accuracy = 1)) +
         ggplot2::scale_fill_manual(values = c( "#7eb7e8","#addc91"))
       p1
 
       data2 <- data %>% dplyr::filter(name == "Variables")
-      p2 <- ggplot(data2, aes(x=name, y=Value, fill=Group)) +
-        geom_bar(position="dodge", stat="identity") +
-        geom_text(aes(label=Value), vjust=1.6, color="white",
-                  position = position_dodge(0.9), size=3.5)+
-        theme_classic() +
-        xlab("") + ylab("") + scale_y_continuous(labels = scales::label_number(accuracy = 1)) +
+      p2 <- ggplot2::ggplot(data2, ggplot2::aes(x=name, y=Value, fill=Group)) +
+        ggplot2::geom_bar(position="dodge", stat="identity") +
+        ggplot2::geom_text(ggplot2::aes(label=Value), vjust=1.6, color="white",
+                  position = ggplot2::position_dodge(0.9), size=3.5)+
+        ggplot2::theme_classic() +
+        ggplot2::xlab("") + ggplot2::ylab("") + ggplot2::scale_y_continuous(labels = scales::label_number(accuracy = 1)) +
         ggplot2::scale_fill_manual(values = c( "#7eb7e8","#addc91"))
       p2
 
       data3 <- data %>% dplyr::filter(name == "Duplicates")
       if (sum(data3$Value) == 0) {
-        p3 <- ggplot(data3, aes(x=name, y=Value, fill=Group)) +
-          geom_bar(position="dodge", stat="identity") +
-          geom_text(aes(label=Value), vjust=1.6, color="white",
-                    position = position_dodge(0.9), size=3.5)+
-          theme_classic() + ylim(0, 100) +
-          xlab("") + ylab("")  +
+        p3 <- ggplot2::ggplot(data3, ggplot2::aes(x=name, y=Value, fill=Group)) +
+          ggplot2::geom_bar(position="dodge", stat="identity") +
+          ggplot2::geom_text(ggplot2::aes(label=Value), vjust=1.6, color="white",
+                    position = ggplot2::position_dodge(0.9), size=3.5)+
+          ggplot2::theme_classic() + ggplot2::ylim(0, 100) +
+          ggplot2::xlab("") + ggplot2::ylab("")  +
           ggplot2::scale_fill_manual(values = c( "#7eb7e8","#addc91"))
         p3
       } else {
-        p3 <- ggplot(data3, aes(x=name, y=Value, fill=Group)) +
-        geom_bar(position="dodge", stat="identity") +
-        geom_text(aes(label=Value), vjust=1.6, color="white",
-                  position = position_dodge(0.9), size=3.5)+
-        theme_classic() +
-        xlab("") + ylab("") + scale_y_continuous(labels = scales::label_number(accuracy = 1)) +
+        p3 <- ggplot2::ggplot(data3, ggplot2::aes(x=name, y=Value, fill=Group)) +
+        ggplot2::geom_bar(position="dodge", stat="identity") +
+        ggplot2::geom_text(ggplot2::aes(label=Value), vjust=1.6, color="white",
+                  position = ggplot2::position_dodge(0.9), size=3.5)+
+        ggplot2::theme_classic() +
+        ggplot2::xlab("") + ggplot2::ylab("") + ggplot2::scale_y_continuous(labels = scales::label_number(accuracy = 1)) +
         ggplot2::scale_fill_manual(values = c( "#7eb7e8","#addc91"))
         p3
       }

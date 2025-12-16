@@ -167,6 +167,9 @@ mod_manual_inspection_ui <- function(id) {
 #'
 #' @noRd
 mod_manual_inspection_server <- function(id, state, parent) {
+  if (!requireNamespace("shinyjs", quietly = TRUE)) {
+    stop("Package 'shinyjs' is required. Please install it.")
+  }
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
@@ -999,6 +1002,9 @@ mod_manual_inspection_server <- function(id, state, parent) {
         write.csv(confirmed_matches(), "Manually Confirmed Matches.csv", na = "")
         write.csv(confirmed_non_matches(), "Manually Confirmed Non-Matches.csv", na = "")
 
+        if (!requireNamespace("zip", quietly = TRUE)) {
+          stop("Package 'zip' is required for file compression. Please install it.")
+        }
         zip::zip(
           file,
           files = c(

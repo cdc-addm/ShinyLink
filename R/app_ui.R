@@ -2,7 +2,7 @@
 #'
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
-#' @import shiny waiter shinybusy
+#' @import shiny
 #' @importFrom shinyWidgets prettyToggle prettySwitch prettyCheckboxGroup
 #' @importFrom shinyWidgets actionBttn switchInput awesomeRadio materialSwitch
 #' @importFrom shinyWidgets prettyRadioButtons sliderTextInput checkboxGroupButtons chooseSliderSkin
@@ -11,6 +11,12 @@
 #'
 #' @noRd
 app_ui <- function(request) {
+  if (!requireNamespace("shinybusy", quietly = TRUE)) {
+    stop("Package 'shinybusy' is required. Please install it.")
+  }
+  if (!requireNamespace("shinyjs", quietly = TRUE)) {
+    stop("Package 'shinyjs' is required. Please install it.")
+  }
   tagList(
     shinybusy::add_busy_bar(color = "#00a65a", height = "8px" ),
 

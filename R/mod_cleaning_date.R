@@ -121,7 +121,6 @@ mod_cleaning_date_ui <- function(id){
 
 #' cleaning_date Server Functions
 #' @importFrom utils head
-#' @import lubridate
 #' @noRd
 mod_cleaning_date_server <- function(id, state, parent){
   moduleServer( id, function(input, output, session){
@@ -152,6 +151,10 @@ mod_cleaning_date_server <- function(id, state, parent){
     date_dataset_a <- reactive({
 
       req(state$dfA_cleaned_gender)
+
+      if (!requireNamespace("lubridate", quietly = TRUE)) {
+        stop("Package 'lubridate' is required for date manipulation. Please install it.")
+      }
 
       data <- state$dfA_cleaned_gender
       # TODO Under development
@@ -193,6 +196,10 @@ mod_cleaning_date_server <- function(id, state, parent){
     date_dataset_b <- reactive({
 
       req(state$dfB_cleaned_gender)
+
+      if (!requireNamespace("lubridate", quietly = TRUE)) {
+        stop("Package 'lubridate' is required for date manipulation. Please install it.")
+      }
 
       data <- state$dfB_cleaned_gender
       # TODO Under development

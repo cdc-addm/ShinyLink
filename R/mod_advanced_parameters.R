@@ -102,7 +102,7 @@ mod_advanced_parameters_ui <- function(id) {
 
 #' advanced_parameters Server Functions
 #'
-#' @import fastLink ggplot2 ggvenn dplyr grid
+#' @import fastLink dplyr grid
 #' @importFrom DT renderDT datatable
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom htmlwidgets JS
@@ -498,6 +498,9 @@ mod_advanced_parameters_server <- function(id, state, session) {
 
     output[["plot-venn"]] <- renderPlot({
       if (length(state$advanced_results[['matches.out']]$matches$inds.a) != 0) {
+        if (!requireNamespace("ggvenn", quietly = TRUE)) {
+          stop("Package 'ggvenn' is required for plotting. Please install it.")
+        }
         n_dfA.unmatch <- nrow(matched_values()[['dfA.unmatch']])
         n_dfB.unmatch <- nrow(matched_values()[['dfB.unmatch']])
         n_match <- nrow(matched_values()[['Dat']])
