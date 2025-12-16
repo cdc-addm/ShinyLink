@@ -2,10 +2,10 @@ Package: ShinyLink
 Title: 'Shiny' Based Record Linkage Tool
 Version: 0.5.4
 Authors@R: c(
-    person("Shufu", "Chen", role = c("aut"), email = "shufuchen@nelsonscilabs.com"),       
-    person("John", "Tyburski", role = c("aut"), email = "jtyburski@nelsonscilabs.com"),
     person('Yaoxiang', 'Li', role = c("aut", "cre"), email = 'liyaoxiang@outlook.com'),
-    person("Amrita", "Cheema", role = c("aut"), email = "akc27@georgetown.edu")
+    person("Shufu", "Chen", role = c("aut")),       
+    person("John", "Tyburski", role = c("aut")),
+    person("Amrita", "Cheema", role = c("aut"))
     )
 Description: A bridge is created between existing robust open-source record linkage algorithms and an urgently needed user-friendly platform that removes financial and technical barriers, setting a new standard for data interoperability in public health and bioinformatics. The 'fastLink' algorithms are used for matching. Ted Enamorado et al. (2019) <doi:10.1017/S0003055418000783>.
 SystemRequirements: C++11
